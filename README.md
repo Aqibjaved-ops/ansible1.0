@@ -31,6 +31,12 @@ echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com
 yum check-update &&
 sudo yum install code # or code-insiders
 
+podman login registry.redhat.io
+USERNAME  : 
+PASSWORD : 
+
+cp /run/user/1000/containers/auth.json  /home/student/.auth.json
+
 --------------
 Open Vs code >>
 
@@ -55,3 +61,21 @@ podman
 
 Ansible>Execution Environment:Image
 registry.redhat.io/ansible-automation-platform-25/ee-supported-rhel8:latest
+
+--------------------------------------
+Then Click on left side Ansible Icon >>
+Scroll Down 
+Devcontainer (Create Dev Cintainer )
+
+-----------------
+Add this Image in .devContainer
+>> podman >>
+devcontainer.json
+
+"image": "registry.redhat.io/ansible-automation-platform-25/ansible-dev-tools-rhel8:26.1.0-1",
+
+----
+
+Add This line as well :
+"mounts": ["source=/home/student/.auth.json,target=/tmp/user/0/containers/auth.json,type=bind"],
+
